@@ -1,6 +1,12 @@
 const express = require('express');
+const mongoose = require('mongoose');
+
 const server = express();
 const routes = require('./routes');
+
+mongoose.connect('mongodb+srv://admin:EMqzUvpHjg7Lv5K@cluster0-qkr9k.mongodb.net/tindev?retryWrites=true&w=majority', {
+    useNewUrlParser: true
+});
 
 server.use(express.json());
 server.use(routes);
