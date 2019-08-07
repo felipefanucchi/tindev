@@ -7,10 +7,10 @@ module.exports = {
     async store(request, response) {
         const { username: user } = request.body;
         const axiosResponse = await axios.get(`${GITHUB_API}/users/${user}`);
-        const userExists = await Dev.findOne({ username: user });
-
+        const userExists = await Dev.findOne({ user });
+        console.log(userExists);
         if (userExists) {
-            return userExists;
+            return response.json(userExists);
         }
 
         const { avatar_url: avatar, name, bio  } = axiosResponse.data;
