@@ -28,7 +28,17 @@ module.exports = {
     async index(request, response) {
         // Aqui deve listar todos usuario cadastrados
         // Exceto, usuarios que deram likes, dislikes e ele mesmo.
-        
-        return response.json({ ok: true })
+        const { user } = request.headers;
+
+        const loggedDev = await Dev.findById(user);
+        const users = await Dev.find({
+            $and: [
+                { _id: { $ne: user } },
+                { _id: { $nin: loggedDev.likes } },
+                { _id: { $nin: loggedDev.dislikes } }
+            ]
+        });
+
+        return response.json(users);
     }
 };
