@@ -16,6 +16,10 @@ module.exports = {
             console.log('deu match');
         }
 
+        if (loggedDev.likes.includes(targetDev._id)) {
+            return response.json(loggedDev);
+        }
+
         loggedDev.likes.push(targetDev._id);
 
         await loggedDev.save();
