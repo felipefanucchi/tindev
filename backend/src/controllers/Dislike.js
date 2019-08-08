@@ -9,16 +9,10 @@ module.exports = {
         const targetDev = await Dev.findById(devId);
 
         if (!targetDev) {
-            return response
-                .status(400)
-                .json({ error: 'Dev not exists' });
+            return response.status(400).json({ error: 'Dev not exists' });
         }
 
-        if (targetDev.likes.includes(loggedDev._id)) {
-            console.log('deu match');
-        }
-
-        loggedDev.likes.push(targetDev._id);
+        loggedDev.dislike.push(targetDev._id);
 
         await loggedDev.save();
 
