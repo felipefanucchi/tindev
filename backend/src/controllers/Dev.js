@@ -8,7 +8,7 @@ module.exports = {
         const { username: user } = request.body;
         const axiosResponse = await axios.get(`${GITHUB_API}/users/${user}`);
         const userExists = await Dev.findOne({ user });
-        console.log(userExists);
+
         if (userExists) {
             return response.json(userExists);
         }
@@ -23,5 +23,12 @@ module.exports = {
         });
 
         return response.json(dev);
+    },
+
+    async index(request, response) {
+        // Aqui deve listar todos usuario cadastrados
+        // Exceto, usuarios que deram likes, dislikes e ele mesmo.
+        
+        return response.json({ ok: true })
     }
 };
