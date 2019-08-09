@@ -22,6 +22,8 @@ module.exports = {
             avatar
         });
 
+        console.log(`Usuário ${user} criado com sucesso!`);
+
         return response.json(dev);
     },
 
@@ -38,6 +40,7 @@ module.exports = {
                 { _id: { $nin: loggedDev.dislikes } }
             ]
         });
+        console.log(`Usuários listados com sucesso!`);
 
         return response.json(users);
     }
