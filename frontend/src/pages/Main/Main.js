@@ -1,7 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+
+import api from '../../services/api';
+
+import logo from '../../assets/logo.svg';
+import like from '../../assets/like.svg';
+import dislike from '../../assets/dislike.svg';
+
+import './Main.css';
 
 export default function Main({ match }) {
+    const [users, setUsers] = useState([]);
+
+    useEffect(() => {
+        (async function loadUsers() {
+            const response = await api.get('/devs', {
+                headers: { user: match.params.id }
+            });
+            setUsers(response.data);
+        })();
+    }, [match.params.id]);
+
     return(
-        <h1>{ match.params.id }</h1>
-    );
-}
+        <div className="main-container">
+            <img className="logo" src={logo} alt="Tindev"/>
+            <ul className="list-dev">
+                {users.map(user => (
+                    <li className="dev">
+                        <img className="dev-avatar" src={user.avatar} alt={user.name} />
+                        <div className="dev-info">
+                            <footer className="dev-footer">
+                                <strong>{user.name}</strong>
+                                <p className="bio">
+                                    {user.bio}
+                                </p>
+                            </footer>
+                            <div className="buttons">
+                                <button type="button">
+                                    <img src={dislike} alt="dislike"/>
+                                </button>
+                                <button type="button">
+                                    <img src={like} alt="Like" />
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+
+                ))}
+            </ul>
+        </div>
+    )
+};

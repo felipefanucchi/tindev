@@ -16,7 +16,7 @@ export default function({ history }) {
 
         const { _id: id } = response.data; 
 
-        history.push(`/main/${id}`);
+        history.push(`/devs/${id}`);
     }
 
     return (
