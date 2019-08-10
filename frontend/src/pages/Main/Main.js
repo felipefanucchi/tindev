@@ -26,22 +26,25 @@ export default function Main({ match }) {
             <ul className="list-dev">
                 {users.map(user => (
                     <li className="dev">
-                        <img className="dev-avatar" src={user.avatar} alt={user.name} />
-                        <div className="dev-info">
-                            <footer className="dev-footer">
-                                <strong>{user.name}</strong>
-                                <p className="bio">
-                                    {user.bio}
-                                </p>
-                            </footer>
-                            <div className="buttons">
-                                <button type="button">
-                                    <img src={dislike} alt="dislike"/>
-                                </button>
-                                <button type="button">
-                                    <img src={like} alt="Like" />
-                                </button>
+                        <figure>
+                            <img className="dev-avatar" src={user.avatar} alt={user.name} />
+                            <div className="dev-info">
+                                <footer className="dev-footer">
+                                    <strong>{user.name}</strong>
+                                    <p className="bio">
+                                        {user.bio}
+                                    </p>
+                                </footer>
                             </div>
+                        </figure>
+                        
+                        <div className="buttons">
+                            <button type="button">
+                                <img src={dislike} alt="dislike"/>
+                            </button>
+                            <button type="button">
+                                <img src={like} alt="Like" />
+                            </button>
                         </div>
                     </li>
 
