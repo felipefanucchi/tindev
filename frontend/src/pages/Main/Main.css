@@ -62,7 +62,7 @@
 
 .dev-footer strong {
     font-size: 15px;
-    color: #fff;
+    color: #E83151  ;
 }
 
 .dev-footer .bio {
@@ -85,6 +85,7 @@
     padding: 10px;
     border: none;
     cursor: pointer;
+    background: #DBD4D3;
 }
 
 .buttons button img {
