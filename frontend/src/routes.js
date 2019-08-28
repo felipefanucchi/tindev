@@ -6,10 +6,27 @@ import Login from './pages/Login/Login';
 import Main from './pages/Main/Main';
 
 export default function Routes() {
-    return(
-        <BrowserRouter>
-            <Route path="/" exact component={Login}/>
-            <Route path="/devs/:id" exact component={Main}/>
-        </BrowserRouter>
-    );
+  const routes = [
+    {
+      exact: true,
+      path: '/',
+      componentName: Login
+    },
+    {
+      exact: true,
+      path: '/devs/:id',
+      componentName: Main
+    }
+  ];
+
+  return (
+    <BrowserRouter>
+      {routes.map(route => (
+        <Route path={route.path}
+          exact={route.exact ? true : null} 
+          component={route.componentName} 
+        />
+      ))}
+    </BrowserRouter>
+  );
 }
