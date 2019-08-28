@@ -4,7 +4,6 @@ module.exports = {
     async store(request, response) {
         const { devId } = request.params;
         const { user } = request.headers;
-
         const loggedDev = await Dev.findById(user);
         const targetDev = await Dev.findById(devId);
 
@@ -17,11 +16,8 @@ module.exports = {
         }
 
         loggedDev.dislikes.push(targetDev._id);
-
         await loggedDev.save();
-        
-        console.log(`${user} deu dislike no(a), ${targetDev.user}.`);
-
+        console.log(`${loggedDev.name} deu dislike no(a), ${targetDev.user}.`);
         return response.json(loggedDev);
     }
 };
